@@ -1,0 +1,12 @@
+<tr>
+    <th>Animal Id</th>
+    <th>Animal Name</th>
+    
+  </tr>
+  {% for a in animals %}
+  <tr style="cursor:pointer;" id = "{{a.id}}" class="animalcol">
+    <td> {{a.idt}} </td>
+    <td> {{a.name}} </td>
+    
+  </tr>
+{% endfor %}

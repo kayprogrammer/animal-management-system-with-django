@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Shopping Cart</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<div id="site">
+	<header id="masthead">
+		<h1></h1>
+	</header>
+	<div id="content">
+		<h1>Your Shopping Cart</h1>
+		<form id="shopping-cart" action="{% url 'update-cart' %}" method="post">
+			{% csrf_token %}
+			<table class="table">
+				<thead>
+				  <tr>
+					<th scope="col">Del</th>
+					<th scope="col">Item</th>
+					<th scope="col">Price</th>
+					<th scope="col">Qty</th>
+					<th scope="col">Total</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for o in orderitems %}
+					<tr>
+						<td style="cursor:pointer;" class="delete-item" onclick="window.location = `{% url 'delete-item' o.id %}`">&times</td>
+						<td>{{o.product.name}}</td>
+						<td>{{o.product.price}}</td>
+						<td><input name="quantity" class="form-control" style="max-width:60px;" value="{{o.quantity}}" type="number" min="1" /></td>
+						<td>{{o.get_total}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p id="sub-total">
+				<strong>Total:</strong> {{total}}
+			</p>
+			<ul id="shopping-cart-actions">
+				{% if orderitems %}
+				<li>
+					<input type="submit" name="update" id="update-cart" class="btn btn-success" value="Update Cart" />
+				</li>
+				<li>
+					<input type="submit" name="delete" id="empty-cart" class="btn btn-danger" value="Empty Cart" />
+				</li>
+				{% endif %}
+				<li>
+					<a href="/" class="btn">Continue Shopping</a>
+				</li>
+				{% if orderitems %}
+				<li>
+					<a href="{% url 'checkout' %}" class="btn">Go To Checkout</a>
+				</li>
+				{% endif %}
+			</ul>
+		</form>
+	</div>
+
+</div>
+
+<footer id="site-info">
+	Copyright &copy; 
+</footer>
+
+<script type="text/javascript">
+	{% comment %} $.ajaxSetup({
+		headers: {"X-CSRFToken": '{{csrf_token}}'}
+	})
+	$('.delete-item').on('click', function(e){
+		e.preventDefault;
+		var self = $(this);
+		$.ajax({
+			url: self.attr('data-url'),
+			method: 'POST',
+			data: JSON.stringify({
+				'id': self.attr('id')
+			}),
+			dataType: 'json',
+			success: function(data){
+				self.parent().remove()
+				$('#sub-total').load(location.href + " #sub-total")
+			}
+		});
+		return false;
+	}) {% endcomment %}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+{% load sweetify %}
+{% sweetify %}
+</body>
+</html>	

@@ -1,0 +1,15 @@
+<tr>
+    <th>Animal Id</th>
+    <th>Animal Name</th>
+    <th>Breeding Date</th>
+    <th>Date of Calving</th>
+    
+</tr>
+{% for b in breedings %}
+<tr style="cursor:pointer;" id = "{{b.id}}" class="breedcol">
+    <td>{{b.bull.idt}}</td>
+    <td> {{b.bull.name}}</td>
+    <td> {{b.breeding_date|date:"d-m-Y"}} </td>
+    <td> {{b.calved_date|date:"d-m-Y"}}</td>
+</tr>
+{% endfor %}

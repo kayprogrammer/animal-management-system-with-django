@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Order</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+</head>
+
+<body id="checkout-page">
+
+<div id="site">
+	<header id="masthead">
+		<h1></h1>
+	</header>
+	<div id="content">
+		<h1>Your Order</h1>
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">Item</th>
+				<th scope="col">Price</th>
+				<th scope="col">Qty</th>
+				<th scope="col">Total</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for o in orderitems %}
+				<tr>
+					<td>{{o.product.name}}</td>
+					<td>{{o.product.price}}</td>
+					<td><input name="quantity" class="form-control" style="max-width:60px;" disabled value="{{o.quantity}}" type="number" min="1" /></td>
+					<td>{{o.get_total}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		 <div id="pricing">
+			
+			<p id="shipping">
+				<strong>Sub Total</strong>: <span id="sshipping">{{subtotal}}</span>
+			</p>
+			<p id="shipping">
+				<strong>Shipping</strong>: <span id="sshipping">2000</span>
+			</p>
+			<p id="sub-total">
+				<strong>Total</strong>: <span id="stotal">{{total}}</span>
+			</p>
+		 </div>
+		 
+		 <div id="user-details">
+		 	<h2>Your Data</h2>
+		 	<div id="user-details-content">
+				<fieldset id="fieldset-billing">
+					<legend style="font-weight:bold;">Billing</legend>
+					<ul class="list-group">
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>Name</strong>
+							<span>{{order.shipping_address.name}}</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>Email</strong>
+							<span>{{order.shipping_address.email}}</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>Address</strong>
+							<span>{{order.shipping_address.address}}</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>City</strong>
+							<span>{{order.shipping_address.city}}</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>Zip Code</strong>
+							<span>{{order.shipping_address.zipcode}}</span>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<strong>Country</strong>
+							<span>{{order.shipping_address.country}}</span>
+						</li>
+					</ul>
+				</fieldset>
+			 </div>
+		 </div>
+		<div style="max-width:250px;">	
+			<button class="btn btn-primary payment-btn mb-2" type="click">Make payment</button>		
+			<div id="paypal-button-container" ></div>
+		</div>
+		 
+	</div>
+	
+	
+
+</div>
+
+<footer id="site-info">
+	Copyright &copy; 
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AaDbY9V3DAtZ00pMf7pF2tTRpzfLH1ZpqAOhVR45XBa1Ba2c6Xzk31Yk9HRt28BT-k4RtgQQHCx6_tIj&currency=USD"></script><script>
+	$.ajaxSetup({
+		headers: {"X-CSRFToken": '{{csrf_token}}'}
+	})
+	$('.payment-btn').on('click', function(e){
+		var self = $(this);
+		self.addClass('d-none')
+		paypal.Buttons({
+
+			style:{
+				color:'blue',
+				shape:'rect',
+			},
+	
+			// Set up the transaction
+			createOrder: function(data, actions) {
+				return actions.order.create({
+					purchase_units: [{
+						amount: {
+							value: '{{total}}'
+						},
+						
+					}],
+					application_context: {
+						shipping_preference: 'NO_SHIPPING'
+					}
+				});
+			},
+	
+			// Finalize the transaction
+			onApprove: function(data, actions) {
+				return actions.order.capture().then(function(details) {
+					$.ajax({
+						url: '/process_order/{{order.id}}/',
+						type: 'POST',
+						data: JSON.stringify({
+							'order_id': '{{order.id}}'
+						}),
+						dataType: 'json',
+						success: function(response){
+							Swal.fire({
+								title:"Payment Received",
+								icon: "success",
+								text: "We've received your payment, and we're processing your delivery",
+								timer: 4000
+							}).then(function(){
+								window.location.href = '/'
+							})
+						}
+					});
+					return false;
+	
+				});
+			}
+	
+	
+		}).render('#paypal-button-container');
+	})
+	// Render the PayPal button into #paypal-button-container
+	
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+{% load sweetify %}
+{% sweetify %}
+</body>
+</html>	
+
+   

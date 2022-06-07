@@ -1,0 +1,12 @@
+<tr >
+    <th>Employee Id</th>
+    <th>Employee Name</th>
+    <th>Employee Salary</th>
+  </tr>
+  {% for e in employees %}
+  <tr style="cursor:pointer;" id = "{{e.id}}" class="empcol">
+    <td >{{e.emp_id}}</td>
+    <td>{{e.emp_name}}</td>
+    <td>{{e.salary}}</td>
+  </tr>
+  {% endfor %}

@@ -1,0 +1,36 @@
+{% csrf_token %}
+Employee id: <input disabled value="{{emp.emp_id}}" type="text" name="employeeid"><input type="hidden" name="emp_id" value="{{emp.id}}"> 
+<br>
+<br>
+Name: <input type="text" value="{{emp.emp_name}}" disabled required name="name" style="margin-left:45px">
+<br>
+<br>
+Basic Salary: <input type="text" value="{{emp.salary}}" disabled required name="basicsalary">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Update Salary by:  <select required name="salary-upd">
+    <option value="5">5%</option>
+    <option value="10">10%</option>
+    <option value="15">15%</option>
+    <option value="20">20%</option>
+    <option value="25">25%</option>
+    <option value="30">30%</option>
+    <option value="35">35%</option>
+    <option value="40">40%</option>
+    <option value="45">45%</option>
+    <option value="50">50%</option>
+
+    </select>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button type="submit" class="btn btn-primary" style="background-color:#4169e1; padding:10px;" name="updatesalary"> Update Salary </button>
+<button type="submit" class="btn btn-danger" style="float:right; padding:10px; background-color:red;" name="deleterecord"> Delete Employee </button>
+

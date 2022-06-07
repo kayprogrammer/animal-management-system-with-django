@@ -1,0 +1,217 @@
+{% extends 'animal/index.html' %}
+{% load static %}    
+{% block content %}
+<br>
+<br>
+<br>
+
+<div class="whole">
+
+
+  <div class="half1">
+    <form style="width: 100%;">
+      <select id="animal-type" name="Animals" style="background-color: lightgray;">
+        <option value="Animal Type">Animal Type</option>
+        <option value="Cow"> Cow </option>
+        <option value="Goat">Goat</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Fish"> Fish </option>
+        <option value=" Pig ">Pig</option>
+        <option value=" Duck">Duck</option>
+     </select>      
+  
+     <label id="animals-count"> {{count}} Animal(s) Found!</label>
+  
+    </form>
+
+    <br> 
+    <input type="text" name="animalname" id="animalname" style="width:500px; height:35px"  placeholder="Animal Name">
+<br>
+<br>
+
+<table class="tb" id="animal-list">
+  {% include 'animal/animal_list.html' %}  
+</table>
+  
+  </div>
+
+
+  <div class="half2">
+    
+    <div class="recordtabs">
+      <input type="radio" id="recordfree1" name="recordtabs" checked="checked">
+            <label for="recordfree1"> Animal Profile </label>
+         
+      <div class="rtab">
+              
+              <p> 
+
+                <div style="border: 1px solid black;;">
+
+
+
+
+<div id="animal-profile">
+  {% include 'animal/animalprofile.html' %}
+</div>
+
+                </div>
+    
+             </p> 
+             </div>
+    
+    
+    
+     <input type="radio" id="recordfree2" name="recordtabs">
+     <label for="recordfree2">  Add Animal </label>
+         
+      <div class="rtab">
+    
+
+        <div style="background-color: #e2e2e2;">
+          <form method="POST">
+            {% csrf_token %}
+            <br>
+            <br>
+            <br>
+
+
+            Animal Type: 
+          
+          
+            <div style="width: 100%; padding-left: 20px;">
+              <select name="animaltype" required style="background-color: lightgray;">
+                <option value="Cow"> Cow </option>
+                <option value="Goat">Goat</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Rabbit">Rabbit</option>
+                <option value="Fish"> Fish </option>
+                <option value=" Pig ">Pig</option>
+                <option value=" Duck">Duck</option>
+             </select>      
+             <br>
+             <br>
+             <br>
+             <br>
+          
+          
+             Birth Date:<br>
+             <input type="date" required name="birthdate" style="width: 40%;">
+             <br>
+             <br>
+             Animal ID:<br>
+             <input type="number" required min="1" name="idt">
+             <br>
+             <br>
+             Animal Name:<br>
+             <input type="text" required name="animalname">
+             <br>
+             <br>
+             Ear Tag:<br>
+             <input type="text" required name="eartag">
+             <br>
+             <br>
+             Sire Id:<br>
+             <input type="number" required min="1" name="sireid">
+             <br>
+             <br>
+             Dam ID:<br>
+             <input type="number" required min="1" name="damid">
+             <br>
+             <br>
+             Breed:<br>
+             <input type="text" required name="breed">
+             <br>
+             <br>
+             Color:<br>
+             <input type="text" required name="color">
+             <br>
+             <br>
+             Weight at Birth:<br>
+             <input type="text" required name="watbirth">
+             <br>
+             <br>
+             Age at First service:<br>
+             <input type="text" required name="firstage">
+             <br>
+             <br>
+             Pasture:<br>
+             <input type="text" required name="pasture">
+             <br>
+             <br>
+             <button class="btn btn-primary" type="submit" name="save"> Save </button>
+           <br>
+           <br>
+           <br>
+
+            
+          
+            </div>
+          
+          
+          </form>
+                 
+          
+          
+
+        </div>
+
+
+
+
+
+             </div>
+    
+    
+    
+    
+    
+    
+            
+    
+         </div>
+
+  </div>
+
+
+  
+
+
+
+
+
+</div>
+                
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $(document).on('click', '.animalcol', function(){
+    var self = $(this);
+    
+    $.ajax({
+      url: '/animalrecords/',
+      type: 'POST',
+      data: JSON.stringify({
+        'animal_id': self.attr('id')
+      }),
+      dataType: 'json',
+      success: function(data){
+        $('#animal-profile').html(data.animal)
+      }
+    });
+    return false;
+  })
+
+</script>
+{% endblock %}

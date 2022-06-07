@@ -1,0 +1,226 @@
+{% csrf_token %}
+
+<br>
+<br>
+<br>
+
+<div style="float: left; margin-left: 10px;">
+    <span  >
+    
+    Bull Name:
+    
+    
+    </span>
+    
+    <span>
+    <input type="hidden" value="{{breed.id}}" name="breed_id">
+    <input type="text" name="bullname" value="{{breed.bull.name}}" disabled style="width:200px; height:40px; margin-left:120px;">
+    
+    </span>
+    
+</div>
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    
+    <div  style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+    Bull id:
+    
+    
+    </span>
+    
+    <span>
+    
+    <input type="number" value="{{breed.bull.idt}}" disabled name="bullid" style="width:150px; height:20px; margin-left:150px;">
+    
+    </span>
+    
+</div>
+    
+    
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+    
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+
+Pregnancy diagnosis date:
+    </span>
+
+    <span >
+    <input required type="date" value="{{breed.pregnancy_diagnosis_date|date:"Y-m-d"}}" name="pdd" style="width:150px; height:20px; margin-left:30px;"> 
+</span>
+    
+</div>
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+    <br>
+    <br>
+    Date due to Calve:
+    
+    </span>
+    
+    <span>
+    
+    <input required type="date" name="date_due_to_calve" value="{{breed.calve_due_date|date:"Y-m-d"}}" style="width:150px; height:20px; margin-left:80px;">
+    
+    </span>
+    
+</div>
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div style="float: left; margin-left: 10px;">
+    
+<span>
+<br>
+<br>
+Date Calved:
+</span>
+
+
+    <span>
+    
+    <input required type="date" name="date_calved" value="{{breed.calved_date|date:"Y-m-d"}}" style="width:150px; height:20px; margin-left:115px;">
+    
+    </span>
+    
+</div>
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+        Age of Cow at Calving:
+    </span>
+    <span>
+    
+    <input type="number" name="age_of_cow_at_calving" disabled value="{{breed.bull.current_age}}" style="width:150px; height:20px; margin-left:55px;">
+    
+    </span>
+    
+</div>
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+    Calf Name:
+    
+    
+    </span >
+    
+    <span>
+    
+    <input type="text" name="calf_name" disabled value="{{breed.calf.name}}" style="width:150px; height:20px; margin-left:130px;">
+    
+    </span>
+    
+</div>
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+    Calf Id:
+    
+    
+    </span>
+    
+    <span>
+    
+    <input type="number" name="calf_id" disabled value="{{breed.calf.idt}}" style="width:150px; height:20px; margin-left:155px;">
+    
+    </span>
+    
+</div>
+    
+    
+    
+    <br>
+    <br>
+    <br>
+    
+    <div style="float: left; margin-left: 10px;">
+    <span>
+        <br>
+        <br>
+        
+        
+    Calf notes:
+    
+    
+    </span>
+    
+    <span>
+    
+    <input required type="text" name="calf_notes" value="{{breed.calf_notes}}" style="width:150px; height:20px; margin-left:135px;">
+
+    
+    </span>
+
+    <span style="float:right;">
+        <br>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary" style="background-color:#4169e1;" name="update"> Update</button>
+        <br>
+    </span>
+    
+</div>
