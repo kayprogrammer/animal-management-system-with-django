@@ -1,0 +1,494 @@
+header{
+    background-color: lightgreen;
+    padding: 40px;
+    text-align: center;
+    font-size: 1cm;
+    font-family: courier;
+    margin-top: 1rem;
+}
+
+
+div.login{
+    text-align: center;
+    margin-top: 80px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    
+}
+
+li {
+    float: left;
+
+    
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+
+    
+    
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+nav{
+    background-color: gray;
+    padding: 0px;
+
+    
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color:  #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 110%;
+   
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #add8e6;
+    color: white;
+}
+
+textarea {
+  resize: none;
+}
+
+
+body{
+    background-color: lightgray;
+}
+
+
+
+.content1{
+  display:flex;
+  flex-direction: row;
+  
+  
+}
+.content2{
+  display:flex;
+  flex-direction: row;
+  
+  
+}
+
+#divider1{
+
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+#divider2{
+
+  margin-left: 70px;
+  margin-right: 70px;
+
+}
+#subcontent1{
+
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+#subcontent2{
+
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+#subcontent3{
+
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+#subcontent4{
+
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 20px;
+
+}
+
+#subcontent5{
+  
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+
+#sc5-button{
+
+  border-radius: 12px;
+
+}
+
+
+
+
+body{
+background:lightgray;
+font-family: 'Roboto', sans-serif;
+
+}
+
+.mytabs{
+display:flex;
+flex-wrap:wrap;
+max-width:100%;
+margin:50px;
+padding:25px;
+background: lightgreen;
+
+}
+
+.mytabs input[type="radio"]{
+display:none;
+
+}
+
+.mytabs label{
+padding:25px;
+background: #e2e2e2;
+font-weight:bold;
+}
+
+.mytabs .tab{
+width:100%;
+padding:20px;
+background:#fff;
+order:1;
+display:none;
+}
+
+.mytabs .tab h2{
+font-size:3em;
+
+}
+
+.mytabs input[type="radio"]:checked + label + .tab{
+display:block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+background: #fff;
+}
+td #data2{
+background-color: blue;
+}
+#group1{
+  width: 45%;
+  float: left;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  background-color: #e2e2e2;
+}
+
+#group2{
+  width: 45%;
+  float: right;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: #e2e2e2;
+}
+
+#child1{
+  width: 45%;
+  float: left;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  background-color: #e2e2e2;
+}
+
+#child2{
+  width: 45%;
+  float: right;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: #e2e2e2;
+}
+
+
+#flow1{
+  width: 50%;
+  float: left;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  background-color: #e2e2e2;
+
+}
+
+#flow2{
+  width: 30%;
+  float: right;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: #e2e2e2;
+}
+
+#way1{
+  width: 45%;
+  float: left;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  background-color: #e2e2e2;
+
+}
+
+#way2{
+  width: 45%;
+  float: right;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: #e2e2e2;
+}
+
+#one-1{
+  width: 100%;
+  float: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 50px;
+  background-color: #e2e2e2;
+
+
+}
+
+#one-2{
+  width: 100%;
+  float: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 50px;
+  background-color: #e2e2e2;
+
+}
+
+#one-3{
+  width: 100%;
+  float: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #e2e2e2;
+  margin-bottom: 50px;
+
+}
+
+#one-4{
+  width: 100%;
+  float: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  background-color: #e2e2e2;
+  margin-bottom: 50px;
+
+}
+
+
+.mps1{
+  text-align: center;
+  }
+  
+#mps-sub3{
+  width: 70%;
+  float: none;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  margin-left: 100px;
+  margin-bottom: 50px;
+  background-color: rgba(169, 169, 187, 0.562);
+  }
+
+.table-fixed{
+
+  border: 1px solid black;
+
+}
+
+th{
+  position: sticky;
+  top: 0px;
+  }
+
+  .table-wrapper{
+    max-height: 300px;
+    overflow-y: scroll;
+margin: 200px;
+  }
+
+  .recorddiv{
+
+    border: #111111;
+    background-color: rgb(211, 205, 205);
+    padding: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+
+  }
+
+
+  #cr1{
+
+    width: 45%;
+  float: left;
+  border: 1px solid black;
+  padding: 20px;
+  margin-right: 15px;
+  background-color: #e2e2e2;
+  color: #111111;
+  }
+
+
+  #cr2{
+
+    width: 45%;
+    float: right;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #e2e2e2;
+  }
+
+  table.tb {
+    text-align: center;
+    border-collapse: collapse; width:100%; }
+  .tb th, .tb td { padding: 10px; border: solid 1px #777; color: #111111}
+  .tb th { background-color: lightblue;}
+  
+  .recordtabs{
+    display:flex;
+    flex-wrap:wrap;
+    
+    margin:50px;
+    padding:0px;
+    background: lightblue;
+    
+    }
+    
+    .recordtabs input[type="radio"]{
+    display:none;
+    
+    }
+    
+    .recordtabs label{
+    padding:25px;
+    
+    font-weight:bold;
+    }
+    
+    .recordtabs .rtab{
+    width:100%;
+    padding:20px;
+    background:#fff;
+    order:1;
+    display:none;
+    }
+    
+    .recordtabs .rtab h2{
+    font-size:3em;
+    
+    }
+    
+    .recordtabs input[type="radio"]:checked + label + .rtab{
+    display:block;
+    }
+    
+    .recordtabs input[type="radio"]:checked + label {
+    background: #fff;
+    }
+
+    /* .animalidcr{
+
+
+    } */
+
+    #acr1{
+      width: 50%;
+      float: left;
+      border: 1px solid black;
+      padding: 20px;
+      margin-right: 0px;
+      background-color: #e2e2e2;
+      color: #111111;
+    }
+
+    #acr2{
+      
+      width: 50%;
+      float: right;
+      border: 1px solid black;
+      padding: 5px;
+      background-color: #e2e2e2;
+    }
+    

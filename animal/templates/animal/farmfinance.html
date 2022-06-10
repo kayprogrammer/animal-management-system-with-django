@@ -1,0 +1,218 @@
+<style>
+    #expensecost, #incomeamount {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#expensecost td, #expensecost th, #incomeamount td, #incomeamountt th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+#expensecost tr:nth-child(even), #expensecost tr:nth-child(even){background-color: #f2f2f2;}
+
+#expensecosts tr:hover, #incomeamount tr:hover {background-color: #ddd;}
+
+#expensecost th, #incomeamount th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #add8e6;
+    color: white;
+}
+</style>
+{% extends 'animal/index.html' %}
+{% load static %}    
+{% block content %}
+
+        <div class="mytabs">
+       <input type="radio" id="tabfree" name="mytabs" checked="checked">
+           <label for="tabfree">  Daily Expenses  </label>
+        
+       <div class="tab">
+             
+        <div class="whole">
+
+            <div class="half1">
+
+
+                <form method="POST" style="margin-top:60px;">
+                    {% csrf_token %}
+           
+            Expenses Type: <input required type="text" name="expensestype" style="margin-left:20px; width: 250px;" >
+            <br>
+            <br>
+            <br>
+            
+            Expenses Amount: <input required type="number" name="expensesamount" style="width: 250px;">
+            <br>
+            <br>
+           <br>
+           <button type="submit" name="save1" style="width:70px; border:1px solid lightslategray; border-radius: 20px; margin-left: 250px; background-color: rgb(108, 110, 108); padding: 6px; "> Save</button>
+            
+            
+            
+            </form>
+            
+            </div>
+            
+            <div class="half2">
+            
+              <table id="expensecost" style="border: 1px solid grey; margin-top: 60px;">
+                    <tbody>
+                        <tr>
+                            <th> Date Incurred </th>
+                            <th> Type of Expense </th>
+                            <th> Amount Incurred ($)</th>
+                          </tr>
+                          {% for e in expfinance %}
+                          <tr>
+                            <td> {{e.date_incurred|date:"Y-m-d"}}</td>
+                            <td> {{e.type}}</td>
+                            <td> {{e.amount|floatformat:2}} </td>
+                          </tr>
+                          {% endfor %}
+                    </tbody>
+                  </table>
+                  <br>
+                  <br>
+
+                  <input type='text' id='totalincome' disabled size="50" style="font-size: 18pt; height: 40px; width:98%; background-color: bisque; text-align: center; " placeholder="Total Income: ${{exptotal|floatformat:2}}">
+                  <br>
+                  <br>
+                  <br>
+                  
+
+
+            </div>
+            
+            </div>
+            
+            </div>
+   
+   
+   
+           <input type="radio" id="tabsilver" name="mytabs">
+           <label for="tabsilver">  Daily Income</label>
+        
+       <div class="tab">
+            
+        <div class="whole">
+
+            <div class="half1" >
+            
+                <form method="POST" style="margin-top: 60px;">
+                    {% csrf_token %}
+                    
+                    Expenses Type: <input required type="text" name="expensestype2" style="margin-left:20px; width: 250px;" >
+                    <br>
+                    <br>
+                    <br>
+                    
+                    Expenses Amount: <input required type="number" name="expensesamount2" style="width: 250px;">
+                    <br>
+                    <br>
+                   <br>
+                   <button type="submit" name="save2" style="width:70px; border:1px solid lightslategray; border-radius: 20px; margin-left: 250px; background-color: rgb(108, 110, 108); padding: 6px; "> Save</button>
+            
+                    
+                    
+                    
+                </form>
+           
+            
+            </div>
+            
+            <div class="half2">
+            
+                <table id="incomeamount" style="width:100%; margin-top: 60px;">
+                    <tr>
+                      <th> Date Received </th>
+                      <th> Income Type </th>
+                      <th> Income Amount ($)</th>
+                    </tr>
+                    {% for i in incfinance %}
+                    <tr>
+                        <td> {{i.date_incurred|date:"Y-m-d"}}</td>
+                        <td> {{i.type}}</td>
+                        <td> {{i.amount|floatformat:2}} </td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                  <br>
+                  <br>
+
+                  <input type='text' id='totalexpense' disabled size="50" style="font-size: 18pt; height: 40px; width:98%; background-color: bisque; text-align: center; " placeholder="Total Expenses: ${{inctotal|floatformat:2}}">
+
+                  
+
+
+            </div>
+            
+            </div>
+            
+            </div>
+   
+   
+   
+   <input type="radio" id="tabgold" name="mytabs">
+           <label for="tabgold"> Income & Expenses Statistics </label>
+        
+       <div class="tab">
+        
+        <div class="one" >
+            
+            <div id="one-2" > 
+              <br>
+              <br>
+            <h2>Today's Income & Expense Chart </h2>
+            <img src="{% static 'images/inc_exp_chart.png' %}"/>
+            </div> 
+            
+            <div id="one-3">
+                <input type='text' id='texta' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Total Income: {{inctotal|floatformat:1}}">
+                <br>
+                <br>
+                <input type='text' id='textb' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Total Expenses: {{exptotal|floatformat:1}}">
+                <br>
+                <br>
+                <input type='text' id='textc' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Largest Source of Expenses: {{exptype}}">
+                <br>
+                <br>
+                <input type='text' id='textd' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Largest Source of Income: {{inctype}}">
+                <br>
+                <br>
+                {% if cash_profit < 1 %}
+                <input type='text' id='texte' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Losses Made($): {{cash_profit|cut:'-'|floatformat:1}}">
+                <br>
+                <br>
+                <input type='text' id='texte' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Losses Made(%): {{percent_profit|cut:'-'|floatformat:1}}">
+                <br>
+                <br>
+                {% else %}
+                <input type='text' id='texte' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Profits Made($): {{cash_profit|floatformat:1}}">
+                <br>
+                <br>
+                <input type='text' id='texte' disabled size="50" style="font-size: 18pt; height: 40px; width:500px; " placeholder="Profits Made(%): {{percent_profit|floatformat:1}}">
+                <br>
+                <br>
+                {% endif %}
+            </div>
+
+            
+            
+            
+            
+            
+                          </div>
+            </div>
+   
+   
+   
+           
+   
+        </div>
+   
+{% endblock %}   
+   

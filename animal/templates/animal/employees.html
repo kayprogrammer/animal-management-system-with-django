@@ -1,0 +1,182 @@
+{% extends 'animal/index.html' %}
+{% load static %}    
+{% block content %}
+<style>
+
+table.tb {
+    text-align: center;
+    border-collapse: collapse; width:100%; }
+  .tb th, .tb td { padding: 10px; border: solid 1px #777; color: #111111}
+  .tb th { background-color: lightblue;}
+</style>
+    <div class="mytabs">
+        <input type="radio" id="tabfree" name="mytabs" checked="checked">
+            <label for="tabfree"> Add Employee </label>
+         
+        <form class="tab" method="POST">
+          {% csrf_token %}
+            <div class="whole">
+
+
+                <div class="half1" style="border:1px solid lightslategray; ">
+                    <h2> Add Employee </h2>
+                    
+                    <div>
+                      
+                      Employee Id:<br>
+                      <input type="text" required name="employeeid">
+                      <br>
+                      <br>
+                      Employee Name:<br>
+                      <input type="text" required name="employeename">
+                      <br>
+                      <br>
+                      Date of Birth:<br>
+                      <input type="date" required name="dob">
+                      <br>
+                      <br>
+                      Gender: <br>
+                      <select id="gender" required name="gender" style="background-color: lightgray;">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                     </select>     
+                      <br>
+                      <br>
+                
+                      Contact:<br>
+                      <input required type="text" name="contact">
+                      <br>
+                      <br>
+                      Address:<br>
+                      <input required type="text" name="address" style="height: 50px;">
+                      <br>
+                      <br>
+                
+                        Designation: <br> <select required name="permission">
+                        <option value="Administrator">Administrator</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Employee">Employee</option>
+                        </select>
+                       
+                    <br>
+                    <br>
+                    </div>
+                    
+                </div>
+                
+                <div class="half2" style="border:1px solid lightslategray; ">
+                  
+                      
+                Date Hired: 
+                <br><input required type="date" name="datehired">
+                <br>
+                <br>
+                
+                Basic Salary ($): <br> <input required type="number" name="basicsalary">
+                <br>
+                <br>
+                
+                Job Title:
+                <br>
+                <input type="text" required name="jobtitle">
+                <br>
+                <br>
+                
+                Username:
+                <br>
+                <input type="text" required name="username">
+                <br> 
+                <br>
+                
+                Email:
+                <br>
+                <input type="email" required name="email">
+                <br> 
+                <br>
+
+                Login Password:
+                <br>
+                <input type="password" required name="password">
+                <br> 
+                <br>
+                <button name="addemp" type="submit" style="float:right; border:1px solid lightslategray; border-radius: 15px; margin-left: 14px; background-color: rgb(108, 110, 108);"> Add Employee</button>
+                </div>
+                
+                
+                
+                </div>
+             </form>
+    
+    
+    
+            <input type="radio" required id="tabsilver" name="mytabs">
+            <label for="tabsilver"> Employee List   </label>
+         
+        <div class="tab">
+
+<div class="whole">
+
+    <div class="half1" style="border:1px solid lightslategray; ">
+        <input type="text" id="employeelist" style="width:500px; height:30px; margin-bottom:5px; margin-left:25px; margin-top:5px; border:1px solid black; border-radius:15px; text-align: center;" value="John Doe"> 
+<br>
+<br>
+
+        <table class="tb" id="emplist" style="width: 100%;">
+          {% include 'animal/emplist.html' %}
+        </table>
+<br>
+<br>
+
+    </div>
+
+    <form method="POST" class="half2" id="empprof" style="border:1px solid lightslategray; ">
+      {% include 'animal/emp_profile.html' %}
+    </form>
+
+
+</div>
+
+             </div>
+    
+         </div>
+{% endblock %}
+{% block js %}
+
+<script type="text/javascript">
+  $(document).on('click', '.empcol', function(){
+    var self = $(this);
+    
+    $.ajax({
+      url: '/employees/',
+      type: 'POST',
+      data: JSON.stringify({
+        'empid': self.attr('id')
+      }),
+      dataType: 'json',
+      success: function(data){
+        $('#empprof').html(data.emp)
+      }
+    });
+    return false;
+  })
+
+  $('#employeelist').on('keyup', function(){
+    var employeename = $('#employeelist').val()
+    console.log(employeename)
+      $.ajax({
+        url: '/employees/',
+        type: 'POST',
+        data: JSON.stringify({
+          'employeename': employeename
+        }),
+        dataType: 'json',
+        success: function(data){
+          $('#emplist').html(data.results)
+        }
+      });
+      return false;
+  })     
+  
+</script>
+
+{% endblock %}

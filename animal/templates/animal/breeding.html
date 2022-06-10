@@ -1,0 +1,438 @@
+{% extends 'animal/index.html' %}
+{% load static %}    
+{% block content %}
+
+    <div class="mytabs" style="background-color: lightgray;">
+        <input type="radio" id="tabfree" name="mytabs" checked="checked">
+            <label for="tabfree"> Breeding List  </label>
+         
+        <div class="tab" style="background-color: lightgray;">
+
+       
+
+            <div class="whole">
+
+                <div class="half1">
+<br>
+<br>
+<span>
+
+    <div style="float: left; margin-left: 10px;">
+<input type="text" id="breeding-search" placeholder="Animal Name" style="width: 230px; height: 30px ;">
+    </div>
+
+
+    <div style="float: right; margin-right: 10px;">
+        <button onclick="window.location=`{% url 'breed-export' %}`" class="btn btn-primary" style="font-size:13px; background-color:#4169e1; padding:10px;"> Print Breeding Data </button>
+
+    </div>    
+</span>
+
+<br>
+<br>
+<br>
+
+
+
+<table class="tb" id="breeding-list">
+  {% include 'animal/breedinglist.html' %}    
+</table>
+
+
+                </div>
+
+
+
+                <form method="POST" class="half2" id="breedprof">
+                  {% include 'animal/breedprofile.html' %}                    
+                </form>
+
+
+
+            </div>
+             
+
+
+
+              
+             </div>
+    
+    
+    
+            <input type="radio" id="tabsilver" name="mytabs">
+            <label for="tabsilver"> Add Breeding Record</label>
+         
+        <div class="tab" style="background-color: #e2e2e2;">
+            <div class="whole">
+
+                <div class="half1">
+<br>
+<br>
+<span>
+
+    <div style="float: left; margin-left: 10px;">
+<input type="text" id="animalname" placeholder="Animal Name" style="width: 350px; height: 30px ;">
+    </div>
+
+
+     
+</span>
+
+<br>
+<br>
+<br>
+
+
+
+<table id="animal-list" class="tb">
+  {% include 'animal/animal_list.html' %}    
+</table>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <form method="POST" class="half2">
+                  {% csrf_token %}
+<br>
+<br>
+<br>
+
+<div style="float: left; margin-left: 10px;">
+    <span  >
+    
+    Breeding Date:
+    
+    
+    </span>
+    
+    <span>
+    
+    <input type="date" required name="breeding_date" style="width:150px; height:20px; margin-left:120px;">
+    
+    </span>
+    
+</div>
+        
+
+                    <div style="float: left; margin-left: 10px;">
+                        <span  >
+                        <br>
+                        <br>
+
+                        Bull Name:
+                        
+                        
+                        </span>
+                        
+                        <span>
+                        
+                        <input type="text" disabled class="bullname" name="bullname" style="width:200px; height:20px; margin-left:120px;">
+                        <input type="hidden" class="bullname" name="bullname">
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        
+                        
+                        <div  style="float: left; margin-left: 10px;">
+                        <span>
+                            <br>
+                            <br>
+                        Bull id:
+                        
+                        
+                        </span>
+                        
+                        <span>
+                        
+                        <input type="number" disabled class="bullid" name="bullid" style="width:150px; height:20px; margin-left:150px;">
+                        <input type="hidden" class="bullid" name="bullid">
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        <br>
+                        <br>
+
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        <div style="float: left; margin-left: 10px;">
+                      <span>
+                          <br>
+                          <br>
+
+Pregnancy diagnosis date:
+                      </span>
+
+                      <span >
+                        <input required type="date" name="pdd" style="width:150px; height:20px; margin-left:30px;"> 
+                    </span>
+                        
+                    </div>
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        <span>
+                        <br>
+                        <br>
+                        Date due to Calve:
+                        
+                        </span>
+                        
+                        <span>
+                        
+                        <input required type="date" name="date_due_to_calve" style="width:150px; height:20px; margin-left:80px;">
+                        
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        
+<span>
+    <br>
+    <br>
+    Date Calved:
+</span>
+
+
+                        <span>
+                        
+                        <input required type="date" name="date_calved" style="width:150px; height:20px; margin-left:115px;">
+                        
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        
+                        
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        <span>
+                            <br>
+                            <br>
+                            Age of Cow at Calving:
+                        </span>
+                        <span>
+                        
+                        <input type="number" disabled id="ccalv" name="age_of_cow_at_calving" style="width:150px; height:20px; margin-left:55px;">
+                        
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        <span>
+                            <br>
+                            <br>
+                        Calf Name:
+                        
+                        
+                        </span >
+                        
+                        <span>
+                        
+                        <input type="text" class="calf_name" disabled name="calf_name" style="width:150px; height:20px; margin-left:130px;">
+                        <input type="hidden" class="calf_name" name="calf_name"> 
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        
+                        
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        <span>
+                            <br>
+                            <br>
+                        Calf Id:
+                        
+                        
+                        </span>
+                        
+                        <span>
+                        
+                        <input type="number" disabled class="calf_id" name="calf_id" style="width:150px; height:20px; margin-left:155px;">
+                        <input type="hidden" class="calf_id" name="calf_id"> 
+                        </span>
+                        
+                    </div>
+                        
+                        
+                        
+                        <br>
+                        <br>
+                        <br>
+                        
+                        <div style="float: left; margin-left: 10px;">
+                        <span>
+                            <br>
+                            <br>
+                           
+                            
+                        Calving notes:
+                        
+                        
+                        </span>
+                        
+                        <span>
+                        
+                        <input required type="text" name="calf_notes" style="width:150px; height:20px; margin-left:135px;">
+                    
+                        
+                        </span>
+
+                        
+                        
+                    </div>
+                        
+
+
+                   
+                            <br>
+                            <br>
+
+                        
+                    
+                        
+                        
+                        
+                      
+                        <span>
+
+                            <br>
+<span style="float:right;">
+    <button name="save" class="btn btn-primary mt-2" style="background-color:#4169e1;" type="submit"> Save </button>
+                       
+</span>
+        
+</span>
+                        
+                        
+                    
+                </form>
+
+
+
+            </div>
+             </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  $(document).on('click', '.animalcol', function(){
+    var self = $(this);
+    
+    $.ajax({
+      url: '/breeding/',
+      type: 'POST',
+      data: JSON.stringify({
+        'animal_id': self.attr('id')
+      }),
+      dataType: 'json',
+      success: function(data){
+        $('.bullname').val(data.bullname)
+        $('.bullid').val(data.bullid)
+        $('#ccalv').val(data.ccalv)
+        $('.calf_name').val(data.calfname)
+        $('.calf_id').val(data.calfid)
+      }
+    });
+    return false;
+  })
+
+  $(document).on('click', '.breedcol', function(){
+    var self = $(this);
+    
+    $.ajax({
+      url: '/breeding/',
+      type: 'POST',
+      data: JSON.stringify({
+        'breed_id': self.attr('id')
+      }),
+      dataType: 'json',
+      success: function(data){
+        $('#breedprof').html(data.breed)
+      }
+    });
+    return false;
+  })
+
+  $('#breeding-search').on('keyup', function(){
+    var breeding_data = $('#breeding-search').val()
+    console.log(breeding_data)
+      $.ajax({
+        url: '/breeding/',
+        type: 'POST',
+        data: JSON.stringify({
+          'breeding_data': breeding_data
+        }),
+        dataType: 'json',
+        success: function(data){
+          $('#breeding-list').html(data.results)
+        }
+      });
+      return false;
+  })
+
+</script>
+{% endblock %}

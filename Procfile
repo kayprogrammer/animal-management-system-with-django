@@ -1,0 +1,1 @@
+web: gunicorn animalecommerce.wsgi --log-file -

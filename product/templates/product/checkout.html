@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script type="text/javascript" src="{% static 'js/jquery.store.js' %}"></script>
+</head>
+
+<body id="checkout-page">
+<div id="site">
+	<!-- <header id="masthead">
+		<h1></h1>
+	</header> -->
+	<div id="content">
+		<h1>Checkout</h1>
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">Item</th>
+				<th scope="col">Price</th>
+				<th scope="col">Qty</th>
+				<th scope="col">Total</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for o in orderitems %}
+				<tr>
+					<td>{{o.product.name}}</td>
+					<td>{{o.product.price}}</td>
+					<td><input name="quantity" class="form-control" style="max-width:60px;" disabled value="{{o.quantity}}" type="number" min="1" /></td>
+					<td>{{o.get_total}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		 <div id="pricing">
+			
+			<p id="shipping">
+				<strong>Sub Total</strong>: <span id="sshipping">{{subtotal}}</span>
+			</p>
+			<p id="shipping">
+				<strong>Shipping</strong>: <span id="sshipping">2000</span>
+			</p>
+			<p id="sub-total">
+				<strong>Total</strong>: <span id="stotal">{{total}}</span>
+			</p>
+		 </div>
+		 
+		 <form method="post" id="checkout-order-form">
+			{% csrf_token %}
+		 	<h2>Your Details</h2>		 	
+		 	<fieldset id="fieldset-billing">
+		 		<legend>Billing</legend>
+		 		<div>
+		 			<label for="name">Name</label>
+		 			{{form.name}}
+		 		</div>
+		 		<div>
+		 			<label for="email">Email</label>
+		 			{{form.email}}
+		 		</div>
+		 		<div>
+		 			<label for="city">City</label>
+		 			{{form.city}}
+		 		</div>
+		 		<div>
+		 			<label for="address">Address</label>
+		 			{{form.address}}
+		 		</div>
+		 		<div>
+		 			<label for="zip">ZIP Code</label>
+		 			{{form.zipcode}}
+		 		</div>
+		 		<div>
+		 			<label for="country">Country</label>
+		 			{{form.country}}
+		 		</div>
+		 	</fieldset>
+		 	
+		 	<p><input type="submit" id="submit-order" value="Submit" class="btn btn-primary" /></p>
+		 
+		 </form>
+	</div>
+	
+	
+
+</div>
+
+<footer id="site-info">
+	Copyright &copy;
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+{% load sweetify %}
+{% sweetify %}
+</body>
+</html>	
+
+    
+

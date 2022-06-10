@@ -1,0 +1,135 @@
+{% csrf_token %}
+
+<br>
+<br>
+<b> Animal Profile</b>
+<br>
+<br>
+<br>
+
+<span>
+<span>
+Animal Name:
+</span>
+
+<span>
+<input type="textbox" disabled value="{{animal.name}}" name="cowname">
+</span>
+
+<br>
+<br>
+<br>
+
+
+
+</span>
+<span>
+  <span >
+  Animal Id:
+  </span>
+  
+  <span style="margin-left: 25px;">
+  <input type="hidden" value="{{animal.idt}}" name="idt">
+  <input type="textbox" disabled value="{{animal.idt}}" name="cowid">
+  </span>
+  
+  </span>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <div class="accordion" style="text-align: center;">
+    <div style="background-color: #add8e6;">
+      <input type="radio" name="example_accordion" id="section1" class="accordion__input" >
+      <label for="section1" class="accordion__label">Health Report</label>
+      <div class="accordion__content" style="background-color: lightgrey;">
+        
+     
+      <div>
+
+
+    
+          
+              </span>
+              Date:
+              <input required type="date" value="{{report.date_created|date:"Y-m-d"}}" name="date" style="margin-left: 20px;">  
+              <span >
+           
+          <br>
+          <br>   
+            
+            </div>
+        
+       
+
+
+
+    <span> 
+      <span style="margin-left: 10px;">
+  Health Event Type: 
+      </span>
+
+      <span style="margin-left: 8px;">
+  <input required type="text" value="{{report.type}}" name="healtheventtype">  
+  <br>
+  <br>   
+      </span>
+    </span>
+
+
+    <span> 
+      <span style="margin-left: 10px;">
+  Diagnosis: 
+      </span>
+
+      <span >
+  <input required type="text" value="{{report.diagnosis}}" name="diagnosis" style="margin-left: 50px;">   
+  <br>
+  <br>   
+      </span>
+    </span>
+
+    <span> 
+      <span style="margin-left: 10px;">
+  Treatment: 
+      </span>
+
+      <span >
+  <input required type="text" value="{{report.treatment}}" name="treatment" style="margin-left: 50px;">   
+  <br>
+  <br>   
+      </span>
+    </span>
+
+    <span> 
+      <span style="margin-left: 10px;">
+  Treatment cost: 
+      </span>
+
+      <span >
+  <input required type="text" value="{{report.cost}}" name="treatmentcost" style="margin-left: 25px;">   
+  <br>
+  <br>   
+      </span>
+    </span>
+
+
+    <span> 
+      <span style="margin-left: 10px;">
+  Name of Vet: 
+      </span>
+
+      <span >
+  <input required type="text" value="{{report.vet}}" name="vetname" style="margin-left: 40px;">   
+  <br>
+   
+      </span>
+    </span>
+    <br>
+    <button type="submit" class="btn btn-primary" name="save">Save</button>
+
+
+      </div>
+    </div>

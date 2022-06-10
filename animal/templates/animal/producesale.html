@@ -1,0 +1,235 @@
+{% extends 'animal/index.html' %}
+{% load static %}    
+{% block content %}
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    padding-top: 5px;
+   
+}
+
+
+
+</style>
+
+    <div class="mytabs" style="background-color: #e2e2e2;">
+        <input type="radio" id="tabfree" name="mytabs" checked="checked">
+            <label for="tabfree"> Product Distribution </label>
+         
+        <div class="tab" style="background-color: #e2e2e2;">
+            
+<div class="whole">
+
+
+<div class="half1">
+
+<form method="POST" style="margin-top:60px;">
+  {% csrf_token %}
+
+<div style="float: left; margin-left: 50px;">
+  <span  >
+  
+  Client's name:
+  
+  
+  </span>
+  
+  <span>
+  
+  <input type="text" required name="client_name" style="width:150px; height:20px; margin-left:85px;">
+  
+  </span>
+  <br>
+  <br>
+  <br>
+  
+</div>
+
+
+<div style="float: left; margin-left: 50px;">
+  <span  >
+  
+  Client's contact:
+  
+  
+  </span>
+  
+  <span>
+  
+  <input type="number" required name="client_contact" style="width:150px; height:20px; margin-left:75px;">
+  
+  </span>
+  <br>
+  <br>
+  <br>
+  
+</div>
+
+<div style="float: left; margin-left: 50px;">
+  <span  >
+  
+  Amount Bought ($):
+  
+  
+  </span>
+  
+  <span>
+  
+  <input type="number" required name="amount_bought" style="width:150px; height:20px; margin-left:50px;">
+  
+  </span>
+  <br>
+  <br>
+  <br>
+      
+  <button type="submit" name="save" style="border:1px solid lightslategray; border-radius: 20px; margin-left: 220px; background-color: rgb(108, 110, 108); padding: 6px; "> Save</button>
+  
+
+</div>
+
+  
+   
+  
+  
+   
+    
+    <br>
+    <br>
+    <br>
+    <br>
+
+    
+
+</form>
+
+
+
+
+
+</div>
+
+<div class="half2">
+
+  <br/>
+  <br/>
+  <br/>
+      <table style="border: 1px solid grey;" >
+          <tr>
+            <th>Client Name</th>
+            <th>Contacts</th>
+            <th>Quantity Bought </th>
+            <th>Date of Purchase</th>
+          </tr>
+          {% for d in distribution %}
+          <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.contact}}</td>
+            <td>{{d.amount}}</td>
+            <td>{{d.date_bought|date:"Y-m-d"}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+  
+        <br>
+        <br>
+    
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+             </div>
+    
+    
+    
+            {% comment %} <input type="radio" id="tabsilver" name="mytabs">
+            <label for="tabsilver"> Client's List </label>
+         
+        <div class="tab">
+          <div class="father">
+
+            <img src="{% static 'images/sale_purchase_peichart.png' %}" />
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Date: 2019-06-19">
+            <br>
+            <br>
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Amount of Milk Produced: 0.0">
+            <br>
+            <br>
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Percent Sold: Infinity">
+            <br>
+            <br>
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Total Amount Sold: 3463.01">
+            <br>
+            <br>
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Total Income: 245293.59">
+            <br>
+            <br>
+            <input type='text' id='text1' disabled size="50" style="font-size: 18pt; height: 40px; width:320px; " placeholder="Amount Not Sold: -3463.01">
+            <br>
+            <br>
+           {% endcomment %}
+
+</div>
+
+
+
+
+
+
+             </div>
+    
+    
+    
+    
+    
+            
+    
+         </div>
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"> </script>
+<script type="text/javascript">
+
+
+google.charts.load('current', {'packages' : ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart(){
+		var data = google.visualization.arrayToDataTable(
+			['Task', 'Hours Per Day'],
+			['Work', 11],
+			['Eat', 2],
+			['Commute',2],
+			['Watch TV', 2],
+			['Sleep',7],
+			);
+
+			var options = {
+			title: 'My Daily Activities'
+			
+};
+			var chart=new google.visualization.PieChart(document.getElementById('Piechart')); 
+			
+      
+      chart.draw(data, options);
+
+
+		}
+</script>
+
+{% endblock %}

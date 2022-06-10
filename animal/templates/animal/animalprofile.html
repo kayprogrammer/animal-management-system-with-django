@@ -1,0 +1,88 @@
+<form method="POST" action="{% url 'updaterecord' %}" style="background-color: #e2e2e2;">
+    {% csrf_token %}
+    <h1 style="color: black;background-color: rgb(108, 110, 108); margin-top: 0px;  width: 100%; height: 100%;">General Information</h1>
+    <div style="background-color: #e2e2e2; margin-top: 0px; height: 100%;" >
+      Animal Id:<br>
+      <input type="number" min="1" name="animalid" disabled value="{{animal.idt}}">
+      <input type="hidden" name="animalid" value="{{animal.idt}}">
+      <br>
+      <br>
+      Animal Name:<br>
+      <input type="text" name="animalname" value="{{animal.name}}">
+      <br>
+      <br>
+      Ear Tag:<br>
+      <input type="text" required name="eartag" value="{{animal.ear_tag}}">
+      <br>
+      <br>
+      
+    </div>
+    <h1 style="color: black;background-color: rgb(108, 110, 108); margin-top: 0px;  width: 100%;">Descriptive </h1>
+    <div style="background-color: #e2e2e2; margin-top: 0px;" >
+      Sire Id:<br>
+      <input type="number" required name="sireid" min="1" value="{{animal.sire_id}}">
+      <br>
+      <br>
+      Dam Id:<br>
+      <input type="number" required min="1" name="damid" value="{{animal.dam_id}}">
+      <br>
+      <br>
+      Animal Type:<br>
+      <select id="animal-type" required name="animaltype" style="width: 165px; height:30px;">
+        <option value="{{animal.animal_type}}">{{animal.animal_type}}</option>
+        <option value="Cow"> Cow </option>
+        <option value="Goat">Goat</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Fish"> Fish </option>
+        <option value=" Pig ">Pig</option>
+        <option value=" Duck">Duck</option>
+     </select>
+      <br>
+      <br>
+      Color:<br>
+      <input type="text" required name="color" value="{{animal.color}}">
+      <br>
+      <br>
+      Breed:<br>
+      <input type="text" required name="breed" value="{{animal.breed}}">
+      <br>
+      <br>
+      Pasture:<br>
+      <input type="text" required name="pasture" value="{{animal.pasture}}">
+      <br>
+      <br>
+      
+    </div>
+
+    <h1 style="color: black;background-color: rgb(108, 110, 108); margin-top: 0px;  width: 100%;">Other information </h1>
+    <div style="background-color: #e2e2e2; margin-top: 0px;" >
+      Birth rate:<br>
+      <input type="text" required name="birthrate" value="{{animal.birth_rate}}">
+      <br>
+      <br>
+      Current Age:<br>
+      <input type="text" required name="currentage" value="{{animal.current_age}}">
+      <br>
+      <br>
+      Weight at Birth:<br>
+      <input type="text" required name="watbirth" value="{{animal.weight}}">
+      <br>
+      <br>
+      Age at First Service:<br>
+      <input type="text" required name="firstage" value="{{animal.first_age}}">
+      <br>
+      <br>
+      
+      <button class="btn btn-primary" type="submit" name="update"> Update details </button> 
+      <button class="btn btn-danger" type="submit" name="delete"> Delete record</button>
+      <br>
+      <br>
+
+      
+    </div>
+  </form>
+
+  <div >
+
+  </div>

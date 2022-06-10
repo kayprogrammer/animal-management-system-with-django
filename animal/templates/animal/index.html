@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html> 
+<head> 
+    <title> Farmers Logs </title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teststyles.css' %}">
+    <link rel="icon" href="{% static 'favicon.jpg' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header>
+        <strong> AgroLog </strong>
+    </header>
+
+    <nav>
+        <ul style="">
+            <li><a href="{% url 'animalrecords' %}">Animal records</a></li>
+            <li><a href="{% url 'animalhealth' %}">Animal Health</a></li>
+            <li><a href="{% url 'breeding' %}">Breeding</a></li>
+            <li><a href="{% url 'producesale' %}">Produce Sale</a></li>
+            <li><a href="{% url 'farmfinance' %}">Farm Finance</a></li>
+            {% if request.user.employee.designation == "Administrator" %}
+            <li><a href="{% url 'employees' %}">Employees</a></li>
+            {% endif %}
+            <li><a href="/">E-commerce</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {"X-CSRFToken": '{{csrf_token}}'}
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $('#animal-type').on('change', function(){
+            var type = $('#animal-type').val()
+              $.ajax({
+                url: '/animalrecords/',
+                type: 'POST',
+                data: JSON.stringify({
+                  'type': type
+                }),
+                dataType: 'json',
+                success: function(data){
+                  $('#animal-list').html(data.results)
+                  $('#animals-count').html(`${data.count} ${type}(s) Found!`)
+                }
+              });
+              return false;
+          })
+        
+          $('#animalname').on('keyup', function(){
+            var animalname = $('#animalname').val()
+            console.log(animalname)
+              $.ajax({
+                url: '/animalrecords/',
+                type: 'POST',
+                data: JSON.stringify({
+                  'animalname': animalname
+                }),
+                dataType: 'json',
+                success: function(data){
+                  $('#animal-list').html(data.results)
+                  $('#animals-count').html(`${data.count} Animal(s) Found!`)
+                }
+              });
+              return false;
+          })        
+    </script>
+    {% load sweetify %}
+    {% sweetify %}
+    {% block js %}
+    {% endblock %}
+</body>
+</html>
