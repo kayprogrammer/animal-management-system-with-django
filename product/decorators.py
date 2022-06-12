@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from animal.models import Employee
 import sweetify
 
 def unauthenticated_user(view_func):
