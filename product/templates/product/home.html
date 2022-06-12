@@ -20,21 +20,10 @@
 <section id="nav-bar">
 	<nav>
         <ul style="">
-
-			{% if request.user.employee %}
-			<li><a href="{% url 'animalrecords' %}">Animal records</a></li>
-            <li><a href="{% url 'animalhealth' %}">Animal Health</a></li>
-            <li><a href="{% url 'breeding' %}">Breeding</a></li>
-            <li><a href="{% url 'producesale' %}">Produce Sale</a></li>
-            <li><a href="{% url 'farmfinance' %}">Farm Finance</a></li>
-			{% if request.user.employee.designation == 'Administrator' %}
-	            <li><a href="{% url 'employees' %}">Employees</a></li>
-			{% endif %}
-			{% endif %}
-			<li><a href="/">E-commerce</a></li>
-			<li><a href="{% url 'cart' %}">Cart</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-		</ul>
+		<li><a href="/">E-commerce</a></li>
+		<li><a href="{% url 'cart' %}">Cart</a></li>
+	    	<li><a href="{% url 'logout' %}">Logout</a></li>
+	</ul>
     </nav>
 
 
