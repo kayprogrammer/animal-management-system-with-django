@@ -26,7 +26,6 @@
             {% if request.user.employee.designation == "Administrator" %}
             <li><a href="{% url 'employees' %}">Employees</a></li>
             {% endif %}
-            <li><a href="/">E-commerce</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </nav>
