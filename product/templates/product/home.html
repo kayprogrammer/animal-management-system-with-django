@@ -22,20 +22,23 @@
 	<nav>
         <ul>
 			{% if request.user.employee %}
-			<li><a href="{% url 'animalrecords' %}">Animal records</a></li>
-            <li><a href="{% url 'animalhealth' %}">Animal Health</a></li>
-            <li><a href="{% url 'breeding' %}">Breeding</a></li>
-            <li><a href="{% url 'producesale' %}">Produce Sale</a></li>
-            <li><a href="{% url 'farmfinance' %}">Farm Finance</a></li>
-			{% if request.user.employee.designation == 'Administrator' %}
-	            <li><a href="{% url 'employees' %}">Employees</a></li>
-			{% endif %}
+				<li><a href="{% url 'animalrecords' %}">Animal records</a></li>
+				<li><a href="{% url 'animalhealth' %}">Animal Health</a></li>
+				<li><a href="{% url 'breeding' %}">Breeding</a></li>
+				<li><a href="{% url 'producesale' %}">Produce Sale</a></li>
+				<li><a href="{% url 'farmfinance' %}">Farm Finance</a></li>
+				{% if request.user.employee.designation == 'Administrator' %}
+	            			<li><a href="{% url 'employees' %}">Employees</a></li>
+				{% endif %}
 			{% endif %}
 			<div class="newnav d-flex justify-content-center">
+				{% if not request.user.employee %}
 				<li><a href="/">E-commerce</a></li>
 				<li><a href="{% url 'cart' %}">Cart</a></li>
+				{% endif %}
 				<li class="ms-auto"><a href="{% url 'logout' %}">Logout</a></li>
 			</div>
+		
 		</ul>
     </nav>
 
