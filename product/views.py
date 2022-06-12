@@ -48,9 +48,12 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('/login/')
     else:
-        food_products = FoodProduct.objects.all()
-        orderitems = OrderItem.objects.filter(user=request.user, order=None)
-        products = [o.product.name for o in orderitems]
+        if request.user.employee:
+            return redirect('/animalrecords/')
+        else:
+            food_products = FoodProduct.objects.all()
+            orderitems = OrderItem.objects.filter(user=request.user, order=None)
+            products = [o.product.name for o in orderitems]
 
     context = {'food_products':food_products, 'orderitems':orderitems, 'products':products}
     return render(request, 'product/home.html', context)
