@@ -55,3 +55,12 @@ def admin_only(view_func):
             return view_func(request, *args, **kwargs)
 
     return wrapper_function
+
+def non_employees(view_func):
+    def wrapper_function(request, *args, **kwargs):
+        if Employee.objects.filter(user=request.user).exists():
+            sweetify.error(request, title='Error', text='You\'re not authorized to view that page', icon='error', button='Ok', timer=4000)
+            return redirect('/animalrecords/')
+        else:
+            return view_func(request, *args, **kwargs)
+    return wrapper_function
