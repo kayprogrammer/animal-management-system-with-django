@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-from product.decorators import authenticated_user, unauthenticated_user
+from product.decorators import authenticated_user, unauthenticated_user, non_employees
 from product.forms import RegisterForm, ShippingForm
 
 from product.models import FoodProduct, Message, Order, OrderItem
@@ -48,14 +48,18 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('/login/')
     else:
-        food_products = FoodProduct.objects.all()
-        orderitems = OrderItem.objects.filter(user=request.user, order=None)
-        products = [o.product.name for o in orderitems]
+        if request.user.employee:
+            return redirect('/animalrecords/')
+        else:
+            food_products = FoodProduct.objects.all()
+            orderitems = OrderItem.objects.filter(user=request.user, order=None)
+            products = [o.product.name for o in orderitems]
 
     context = {'food_products':food_products, 'orderitems':orderitems, 'products':products}
     return render(request, 'product/home.html', context)
 
 @authenticated_user
+@non_employees
 def cart(request):
     orderitems = OrderItem.objects.filter(user = request.user, order = None)
     total = sum([item.get_total for item in orderitems])
@@ -63,6 +67,7 @@ def cart(request):
     return render(request, 'product/cart.html', context)
 
 @authenticated_user
+@non_employees
 def add_to_cart(request, product_id):
     product = FoodProduct.objects.get(id=product_id)
     quantity = request.POST.get('qty-2')
@@ -72,6 +77,7 @@ def add_to_cart(request, product_id):
     return redirect('/cart/')
 
 @authenticated_user
+@non_employees
 def update_cart(request):
     if 'update' in request.POST:
         quantities = request.POST.getlist('quantity') 
@@ -85,11 +91,13 @@ def update_cart(request):
     return redirect('/cart/')
 
 @authenticated_user
+@non_employees
 def delete_orderitem(request, item_id):
     OrderItem.objects.get(user=request.user, id = item_id).delete()
     return redirect('/cart/')
 
 @authenticated_user
+@non_employees
 def checkout(request):
 
     orderitems = OrderItem.objects.filter(user = request.user, order = None)
@@ -113,6 +121,7 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 @authenticated_user
+@non_employees
 def process_order(request, order_id):
     order = Order.objects.get(id = order_id, user = request.user, verified=False)
     orderitems = order.orderitems.all()
@@ -128,6 +137,7 @@ def process_order(request, order_id):
     return render(request, 'product/order.html', context)
 
 @authenticated_user
+@non_employees
 def message(request):
 
     name = request.POST.get('name')
