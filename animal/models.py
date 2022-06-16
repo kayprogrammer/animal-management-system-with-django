@@ -59,7 +59,7 @@ class Breeding(models.Model):
 
 class ClientData(models.Model):
     name = models.CharField(max_length=1000, null=True)
-    contact = models.CharField(max_length=1000, null=True)
+    item_sold = models.CharField(max_length=1000, null=True)
     amount = models.CharField(max_length=1000, null=True)
     date_bought = models.DateField(default=timezone.now)
 
