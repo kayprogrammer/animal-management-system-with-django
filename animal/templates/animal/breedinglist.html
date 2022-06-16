@@ -13,3 +13,66 @@
     <td> {{b.calved_date|date:"d-m-Y"}}</td>
 </tr>
 {% endfor %}
+{% if breedings.count < 5 %}
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+{% elif breedings.count > 5 and breedings.count < 10 %}
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+</tr>
+{% endif %}
