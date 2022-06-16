@@ -51,14 +51,14 @@
 <div style="float: left; margin-left: 50px;">
   <span  >
   
-  Client's contact:
+  Item sold:
   
   
   </span>
   
   <span>
   
-  <input type="number" required name="client_contact" style="width:150px; height:20px; margin-left:75px;">
+  <input type="number" required name="item_sold" style="width:150px; height:20px; margin-left:75px;">
   
   </span>
   <br>
@@ -118,14 +118,14 @@
       <table style="border: 1px solid grey;" >
           <tr>
             <th>Client Name</th>
-            <th>Contacts</th>
+            <th>Item Sold</th>
             <th>Quantity Bought </th>
             <th>Date of Purchase</th>
           </tr>
           {% for d in distribution %}
           <tr>
             <td>{{d.name}}</td>
-            <td>{{d.contact}}</td>
+            <td>{{d.item_sold}}</td>
             <td>{{d.amount}}</td>
             <td>{{d.date_bought|date:"Y-m-d"}}</td>
           </tr>
