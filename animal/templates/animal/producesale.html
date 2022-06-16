@@ -130,6 +130,99 @@
             <td>{{d.date_bought|date:"Y-m-d"}}</td>
           </tr>
           {% endfor %}
+	  {% if distribution.count < 5 %}
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+            <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>  
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+            <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>  
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  {% elif distribution.count > 5 and distribution.count < 10 %}
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+            <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>  
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  {% endif %}
         </table>
   
         <br>
