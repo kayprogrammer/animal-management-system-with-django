@@ -205,7 +205,7 @@ def producesale(request):
     # for i in range(10):
     #     ClientData.objects.create(name=f'My-name-{i+10}', contact=f'38729929287{i+1}', amount=f'{i+200}')
     if request.method=='POST':
-        ClientData.objects.create(name=request.POST.get('client_name'), contact=request.POST.get('client_contact'), amount=request.POST.get('amount_bought'))
+        ClientData.objects.create(name=request.POST.get('client_name'), item_sold=request.POST.get('item_sold'), amount=request.POST.get('amount_bought'))
         sweetify.success(request, title='Success', text='Data added', icon='success', button='Ok', timer=3000)
         return redirect('/producesale/')
 
