@@ -6,6 +6,7 @@ from product.decorators import authenticated_user, unauthenticated_user, non_emp
 from product.forms import RegisterForm, ShippingForm
 
 from product.models import FoodProduct, Message, Order, OrderItem
+from animal.models import Employee
 import sweetify
 # Create your views here.
 
@@ -48,7 +49,7 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect('/login/')
     else:
-        if request.user.employee:
+        if Employee.objects.filter(user=request.user).exists():
             return redirect('/animalrecords/')
         else:
             food_products = FoodProduct.objects.all()
