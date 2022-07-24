@@ -2,6 +2,8 @@
 
 This is a mini animal management system built with django. It's also has an ecommerce section for buying food products with a paypal payment gateway.
 
+![alt text](https://github.com/kayprogrammer/animal-management-system-with-django/blob/main/display.png?raw=true)
+
 ### Built with...
 
 * Django Backend Framework
